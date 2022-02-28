@@ -53,5 +53,11 @@ public class Plane implements Geometry{
         return getNormal();
     }
 
-
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "_q0=" + _q0 +
+                ", _normal=" + _normal +
+                '}';
+    }
 }

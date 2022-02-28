@@ -8,8 +8,8 @@ public class Ray {
 
     /**
      * c-tor: gets point and vector
-     * @param _p0- the head
-     * @param _dir- the direction
+     * @param p0- the head
+     * @param dir- the direction
      */
 
     public Ray(Point p0,Vector dir) {
