@@ -1,11 +1,11 @@
 package primitives;
 import java.util.Objects;
 public class Point {
-    final Double3 _xyz;
+    private final Double3 _xyz;
 
     /**
      * primary constructor for Point
-     * @param xyz Double3 value for x,z,z axis
+     * @param xyz Double3 value for x,y,z axis
      */
     public Point(Double3 xyz) {
         _xyz = xyz;
@@ -28,17 +28,17 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return _xyz.equals(point._xyz);
+        return get_xyz().equals(point.get_xyz());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_xyz);
+        return Objects.hash(get_xyz());
     }
 
     @Override
     public String toString() {
-        return "Point " + _xyz ;
+        return "Point " + get_xyz();
     }
 
     /**
@@ -47,13 +47,13 @@ public class Point {
      * @return  d = ((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1))
      */
     public double distanceSquared(Point other){
-        double x1 = _xyz._d1;
-        double y1 = _xyz._d2;
-        double z1 = _xyz._d3;
+        double x1 = get_xyz().get_d1();
+        double y1 = get_xyz().get_d2();
+        double z1 = get_xyz().get_d3();
 
-        double x2 = other._xyz._d1;
-        double y2 = other._xyz._d2;
-        double z2 = other._xyz._d3;
+        double x2 = other.get_xyz().get_d1();
+        double y2 = other.get_xyz().get_d2();
+        double z2 = other.get_xyz().get_d3();
 
         return ((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1));
     }
@@ -74,11 +74,15 @@ public class Point {
      * @return
      */
     public Point add(Vector vector) {
-        return  new Point(_xyz.add(vector._xyz));
+        return  new Point(get_xyz().add(vector.get_xyz()));
     }
 
 
     public Vector subtract(Point point) {
-        return new Vector(_xyz.subtract(point._xyz));
+        return new Vector(get_xyz().subtract(point.get_xyz()));
+    }
+
+    public Double3 get_xyz() {
+        return _xyz;
     }
 }

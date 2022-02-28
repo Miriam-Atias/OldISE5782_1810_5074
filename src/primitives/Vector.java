@@ -1,6 +1,12 @@
 package primitives;
 
 public class Vector extends Point {
+    /**
+     *
+     * @param x-double d1
+     * @param y- double d2
+     * @param z- double d3
+     */
     public Vector(double x, double y, double z) {
 //        super(x,y,z);
 //        if(_xyz.equals(Double3.ZERO)){
@@ -16,18 +22,18 @@ public class Vector extends Point {
      */
     public Vector(Double3 xyz) {
         super(xyz);
-        if (_xyz.equals(Double3.ZERO)) {
+        if (get_xyz().equals(Double3.getZERO())) {
             throw new IllegalArgumentException("Vector(0,0,0) is not allowed");
         }
     }
 
     /**
-     * @return
+     * @return the length Squared of this vector
      */
     public double lengthSquared() {
-        return _xyz._d1 * _xyz._d1
-                + _xyz._d2 * _xyz._d2
-                + _xyz._d3 * _xyz._d3;
+        return get_xyz().get_d1() * get_xyz().get_d1()
+                + get_xyz().get_d2() * get_xyz().get_d2()
+                + get_xyz().get_d3() * get_xyz().get_d3();
     }
 
     /**
@@ -45,9 +51,9 @@ public class Vector extends Point {
      * @link https://www.mathsisfun.com/algebra/vectors-dot-product.html
      */
     public double dotProduct(Vector other) {
-        return _xyz._d1 * other._xyz._d1
-                + _xyz._d2 * other._xyz._d2
-                + _xyz._d3 * other._xyz._d3;
+        return get_xyz().get_d1() * other.get_xyz().get_d1()
+                + get_xyz().get_d2() * other.get_xyz().get_d2()
+                + get_xyz().get_d3() * other.get_xyz().get_d3();
     }
 
     /**
@@ -57,13 +63,13 @@ public class Vector extends Point {
      * @link https://www.mathsisfun.com/algebra/vectors-cross-product.html
      */
     public Vector crossProduct(Vector other) {
-        double ax = _xyz._d1;
-        double ay = _xyz._d2;
-        double az = _xyz._d3;
+        double ax = get_xyz().get_d1();
+        double ay = get_xyz().get_d2();
+        double az = get_xyz().get_d3();
 
-        double bx = other._xyz._d1;
-        double by = other._xyz._d2;
-        double bz = other._xyz._d3;
+        double bx = other.get_xyz().get_d1();
+        double by = other.get_xyz().get_d2();
+        double bz = other.get_xyz().get_d3();
 
         double cx = ay * bz - az * by;
         double cy = az * bx - ax * bz;
@@ -75,6 +81,11 @@ public class Vector extends Point {
 
     public Vector normalize() {
         double len = length();
-        return new Vector(_xyz.reduce(len));
+        return new Vector(get_xyz().reduce(len));
+    }
+
+    @Override
+    public String toString() {
+        return "Vector{}";
     }
 }
