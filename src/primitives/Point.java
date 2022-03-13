@@ -1,7 +1,8 @@
 package primitives;
 import java.util.Objects;
+
 public class Point {
-    private final Double3 _xyz;
+    protected final Double3 _xyz;
 
     /**
      * primary constructor for Point
@@ -28,17 +29,17 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return get_xyz().equals(point.get_xyz());
+        return _xyz.equals(point._xyz);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(get_xyz());
+        return Objects.hash(_xyz);
     }
 
     @Override
     public String toString() {
-        return "Point " + get_xyz();
+        return "Point " + _xyz;
     }
 
     /**
@@ -47,13 +48,13 @@ public class Point {
      * @return  d = ((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1))
      */
     public double distanceSquared(Point other){
-        double x1 = get_xyz().get_d1();
-        double y1 = get_xyz().get_d2();
-        double z1 = get_xyz().get_d3();
+        double x1 = _xyz.get_d1();
+        double y1 = _xyz.get_d2();
+        double z1 = _xyz.get_d3();
 
-        double x2 = other.get_xyz().get_d1();
-        double y2 = other.get_xyz().get_d2();
-        double z2 = other.get_xyz().get_d3();
+        double x2 = other._xyz.get_d1();
+        double y2 = other._xyz.get_d2();
+        double z2 = other._xyz.get_d3();
 
         return ((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1));
     }
@@ -74,15 +75,13 @@ public class Point {
      * @return
      */
     public Point add(Vector vector) {
-        return  new Point(get_xyz().add(vector.get_xyz()));
+        return new Point(_xyz.add(vector._xyz));
     }
 
 
     public Vector subtract(Point point) {
-        return new Vector(get_xyz().subtract(point.get_xyz()));
+        return new Vector(_xyz.subtract(point._xyz));
     }
 
-    public Double3 get_xyz() {
-        return _xyz;
-    }
+
 }
